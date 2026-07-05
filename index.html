@@ -295,8 +295,12 @@
 
   /* ---------- wishes ---------- */
   .wish-form{
-    display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:38px;
+    display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:12px;
     background:#fff;border:3px solid var(--purple-light);border-radius:24px;padding:22px;
+  }
+  .wish-status{
+    min-height:24px;margin-bottom:24px;text-align:center;color:var(--purple-deep);
+    font-weight:700;font-family:'Fredoka';
   }
   .wish-form input, .wish-form textarea{
     font-family:'Poppins';border:2px solid var(--purple-light);border-radius:14px;padding:13px 16px;
@@ -498,11 +502,12 @@
     <h2>Birthday Wishes Wall</h2>
     <p>Drop a message for Alena — bestie deserves all the hype 💜</p>
   </div>
-  <div class="wish-form">
+  <form id="wishForm" class="wish-form" autocomplete="off">
     <input type="text" id="wishName" placeholder="Your name">
     <textarea id="wishMsg" placeholder="Write your birthday wish for Alena..."></textarea>
-    <button class="btn btn-primary" onclick="addWish()">Send Wish 💌</button>
-  </div>
+    <button type="submit" class="btn btn-primary">Send Wish 💌</button>
+  </form>
+  <div class="wish-status" id="wishStatus" role="status" aria-live="polite"></div>
   <div class="wishes-wall" id="wishesWall"></div>
 </section>
 
@@ -711,6 +716,9 @@ const defaultWishes = [
   {who:"Bestie", msg:"12 looks SO good on you no cap! Can't wait to celebrate with you 🎉"}
 ];
 const wishesWall = document.getElementById('wishesWall');
+const wishForm = document.getElementById('wishForm');
+const wishStatus = document.getElementById('wishStatus');
+let wishStatusTimer = null;
 function loadWishes(){
   const saved = JSON.parse(localStorage.getItem('alenaWishes')||'null') || defaultWishes;
   wishesWall.innerHTML = '';
@@ -726,18 +734,34 @@ function escapeHtml(str){
   d.textContent = str;
   return d.innerHTML;
 }
+function showWishStatus(message){
+  if(!wishStatus) return;
+  wishStatus.textContent = message;
+  clearTimeout(wishStatusTimer);
+  wishStatusTimer = setTimeout(()=>{
+    wishStatus.textContent = '';
+  }, 2400);
+}
 function addWish(){
   const name = document.getElementById('wishName').value.trim() || 'Anonymous Bestie';
   const msg = document.getElementById('wishMsg').value.trim();
-  if(!msg) return;
+  if(!msg){
+    showWishStatus('Please write a wish before sending 💜');
+    return;
+  }
   const saved = JSON.parse(localStorage.getItem('alenaWishes')||'null') || defaultWishes.slice();
   saved.unshift({who:name,msg:msg});
   localStorage.setItem('alenaWishes', JSON.stringify(saved));
   document.getElementById('wishName').value='';
   document.getElementById('wishMsg').value='';
   loadWishes();
+  showWishStatus('Wish sent to Alena 💌');
   launchConfetti();
 }
+wishForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  addWish();
+});
 loadWishes();
 </script>
 </body>
