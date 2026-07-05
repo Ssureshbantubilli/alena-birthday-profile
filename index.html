@@ -48,23 +48,22 @@
   /* Make the hero name appear in a calligraphic/cursive font */
   .hero h1 .name{font-family:'Great Vibes',cursive;letter-spacing:0.6px;}
 
-  /* Scale the hero bow 4x while preserving the swing animation (uses rotate+scale) */
+  /* Restore hero bow to normal scale and reduce width for better balance */
   .bow-hero{
-    /* keep original width but scale up visually */
-    width:min(880px,95vw);
+    width:min(220px,48vw);
     transform-origin:50% 15%;
-    animation:swingBowScale 3.4s ease-in-out infinite alternate;
+    animation:swingBow 3.4s ease-in-out infinite alternate;
     margin-bottom:6px;
-    filter:drop-shadow(0 18px 26px rgba(139,92,246,.45));
+    filter:drop-shadow(0 8px 12px rgba(139,92,246,.28));
   }
-  @keyframes swingBowScale{0%{transform:rotate(-6deg) scale(4);}100%{transform:rotate(6deg) scale(4);}}
   .bow-nav{width:40px;animation:wiggleSmall 2.2s ease-in-out infinite;}
   @keyframes wiggleSmall{0%,100%{transform:rotate(-6deg);}50%{transform:rotate(6deg);}}
   .bow-tag{width:28px;vertical-align:-9px;margin:0 4px;}
   .bow-cake-topper{width:90px;}
   .bow-footer{width:140px;margin-bottom:10px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.2));}
   .bow-corner{position:absolute;width:36px;top:-16px;right:-12px;transform:rotate(18deg);z-index:2;}
-  .bow-wishes{display:block;width:88px;margin:18px auto 6px;filter:drop-shadow(0 8px 18px rgba(139,92,246,.25));}
+  /* smaller decorative bow under wishes (local change, not committed) */
+  .bow-wishes{display:block;width:44px;margin:12px auto 6px;filter:drop-shadow(0 6px 12px rgba(139,92,246,.18));}
 
   /* ---------- party bunting ---------- */
   .bunting{
