@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alena's 12th Birthday 💜🎀</title>\n    <!-- pages-rebuild: 2026-07-05T07:22:46Z -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
   :root{
     --purple-deep:#5b21b6;
@@ -44,6 +44,20 @@
   .bow-icon{display:inline-block;filter:drop-shadow(0 8px 12px rgba(139,92,246,.3));}
   .bow-hero{width:min(880px,95vw);animation:swingBow 3.4s ease-in-out infinite alternate;transform-origin:50% 15%;margin-bottom:6px;}
   @keyframes swingBow{0%{transform:rotate(-6deg);}100%{transform:rotate(6deg);}}
+
+  /* Make the hero name appear in a calligraphic/cursive font */
+  .hero h1 .name{font-family:'Great Vibes',cursive;letter-spacing:0.6px;}
+
+  /* Scale the hero bow 4x while preserving the swing animation (uses rotate+scale) */
+  .bow-hero{
+    /* keep original width but scale up visually */
+    width:min(880px,95vw);
+    transform-origin:50% 15%;
+    animation:swingBowScale 3.4s ease-in-out infinite alternate;
+    margin-bottom:6px;
+    filter:drop-shadow(0 18px 26px rgba(139,92,246,.45));
+  }
+  @keyframes swingBowScale{0%{transform:rotate(-6deg) scale(4);}100%{transform:rotate(6deg) scale(4);}}
   .bow-nav{width:40px;animation:wiggleSmall 2.2s ease-in-out infinite;}
   @keyframes wiggleSmall{0%,100%{transform:rotate(-6deg);}50%{transform:rotate(6deg);}}
   .bow-tag{width:28px;vertical-align:-9px;margin:0 4px;}
