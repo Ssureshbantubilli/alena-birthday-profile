@@ -719,14 +719,37 @@ const wishesWall = document.getElementById('wishesWall');
 const wishForm = document.getElementById('wishForm');
 const wishStatus = document.getElementById('wishStatus');
 let wishStatusTimer = null;
+
+// --- Edit/Update state ---
+// `editingIndex` tracks the index in the saved wishes array when the user
+// is editing an existing wish. `null` means we're composing a new wish.
+let editingIndex = null;
+
+// Cache reference to the submit button so we can toggle its label between
+// "Send Wish" and "Update" during edit mode.
+const submitButton = wishForm.querySelector('button[type="submit"]');
 function loadWishes(){
   const saved = JSON.parse(localStorage.getItem('alenaWishes')||'null') || defaultWishes;
   wishesWall.innerHTML = '';
-  saved.forEach(w=>{
+  // Render wishes in order (newest first). Add an Edit button per card.
+  saved.forEach((w, idx)=>{
     const card = document.createElement('div');
     card.className='wish-card';
-    card.innerHTML = `<div class="who">${escapeHtml(w.who)}</div><div class="msg">${escapeHtml(w.msg)}</div>`;
+    // keep existing structure but append an actions area with an Edit button
+    card.innerHTML = `<div class="who">${escapeHtml(w.who)}</div>
+                      <div class="msg">${escapeHtml(w.msg)}</div>
+                      <div class="wish-actions">
+                        <button class="btn btn-ghost edit-btn" data-idx="${idx}">Edit</button>
+                      </div>`;
     wishesWall.appendChild(card);
+  });
+
+  // Attach click handlers for Edit buttons (delegated per card)
+  wishesWall.querySelectorAll('.edit-btn').forEach(btn=>{
+    btn.addEventListener('click',(e)=>{
+      const idx = Number(btn.getAttribute('data-idx'));
+      enterEditMode(idx);
+    });
   });
 }
 function escapeHtml(str){
@@ -758,9 +781,70 @@ function addWish(){
   showWishStatus('Wish sent to Alena 💌');
   launchConfetti();
 }
+// --- Edit / Update functionality ---
+// Enter edit mode for the wish at `index`: populate the form with the
+// existing values, change the submit button to "Update", and add a Cancel
+// button to abort editing.
+function enterEditMode(index){
+  const saved = JSON.parse(localStorage.getItem('alenaWishes')||'null') || defaultWishes.slice();
+  const item = saved[index];
+  if(!item) return;
+  editingIndex = index;
+  document.getElementById('wishName').value = item.who;
+  document.getElementById('wishMsg').value = item.msg;
+  // change submit button label
+  submitButton.textContent = 'Update';
+  // add a cancel button next to the submit button if not already present
+  if(!document.getElementById('wishCancel')){
+    const cancel = document.createElement('button');
+    cancel.type = 'button';
+    cancel.id = 'wishCancel';
+    cancel.className = 'btn btn-ghost';
+    cancel.textContent = 'Cancel';
+    cancel.style.marginLeft = '8px';
+    cancel.addEventListener('click', exitEditMode);
+    submitButton.insertAdjacentElement('afterend', cancel);
+  }
+  // focus the message textarea for quick editing
+  document.getElementById('wishMsg').focus();
+}
+
+// Exit edit mode without saving changes: clear form and restore UI.
+function exitEditMode(){
+  editingIndex = null;
+  document.getElementById('wishName').value = '';
+  document.getElementById('wishMsg').value = '';
+  submitButton.textContent = 'Send Wish 💌';
+  const cancel = document.getElementById('wishCancel');
+  if(cancel) cancel.remove();
+}
+
+// Save updates to an existing wish when in edit mode.
+function updateWish(){
+  if(editingIndex === null) return;
+  const name = document.getElementById('wishName').value.trim() || 'Anonymous Bestie';
+  const msg = document.getElementById('wishMsg').value.trim();
+  if(!msg){ showWishStatus('Please write a wish before updating 💜'); return; }
+  const saved = JSON.parse(localStorage.getItem('alenaWishes')||'null') || defaultWishes.slice();
+  if(!saved[editingIndex]){ showWishStatus('Could not find the wish to update.'); exitEditMode(); return; }
+  // apply changes and persist
+  saved[editingIndex].who = name;
+  saved[editingIndex].msg = msg;
+  localStorage.setItem('alenaWishes', JSON.stringify(saved));
+  // restore UI state
+  exitEditMode();
+  loadWishes();
+  showWishStatus('Wish updated 💌');
+}
+
+// Unified submit handler: either add a new wish or update an existing one.
 wishForm.addEventListener('submit', (e)=>{
   e.preventDefault();
-  addWish();
+  if(editingIndex === null){
+    addWish();
+  } else {
+    updateWish();
+  }
 });
 loadWishes();
 </script>
