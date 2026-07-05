@@ -64,6 +64,7 @@
   .bow-cake-topper{width:90px;}
   .bow-footer{width:140px;margin-bottom:10px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.2));}
   .bow-corner{position:absolute;width:36px;top:-16px;right:-12px;transform:rotate(18deg);z-index:2;}
+  .bow-wishes{display:block;width:88px;margin:18px auto 6px;filter:drop-shadow(0 8px 18px rgba(139,92,246,.25));}
 
   /* ---------- party bunting ---------- */
   .bunting{
@@ -323,7 +324,7 @@
 
   /* ---------- wishes ---------- */
   .wish-form{
-    display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:12px;
+    display:flex;gap:12px;flexx`-wrap:wrap;justify-content:center;margin-bottom:12px;
     background:#fff;border:3px solid var(--purple-light);border-radius:24px;padding:22px;
   }
   .wish-status{
@@ -537,6 +538,8 @@
   </form>
   <div class="wish-status" id="wishStatus" role="status" aria-live="polite"></div>
   <div class="wishes-wall" id="wishesWall"></div>
+  <!-- bow centered under the wishes wall -->
+  <svg class="bow-icon bow-wishes" aria-hidden="true"><use href="#bowShape"/></svg>
 </section>
 
 <div class="wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,50 C240,10 480,70 720,30 C960,-10 1200,50 1440,20 L1440,80 L0,80 Z" fill="#5b21b6"/></svg></div>
