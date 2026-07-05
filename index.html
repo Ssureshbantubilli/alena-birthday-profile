@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alina's 12th Birthday 💜🎀</title>
+<title>Alena's 12th Birthday 💜🎀</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -364,7 +364,7 @@
 </svg>
 
 <nav>
-  <div class="logo"><svg class="bow-icon bow-nav"><use href="#bowShape"/></svg> Alina's Era</div>
+  <div class="logo"><svg class="bow-icon bow-nav"><use href="#bowShape"/></svg> Alena's Era</div>
   <ul class="navlinks">
     <li><a href="#home">Home</a></li>
     <li><a href="#countdown">Countdown</a></li>
@@ -393,7 +393,7 @@
 
   <svg class="bow-icon bow-hero"><use href="#bowShape"/></svg>
   <span class="badge">✨ Main Character Alert ✨</span>
-  <h1><span class="name">ALINA SAHA</span> IS TURNING 12!</h1>
+  <h1><span class="name">ALENA SAHA</span> IS TURNING 12!</h1>
   <p class="sub">She's officially double digits royalty. <b>No cap</b>, this is her most iconic era yet 💜 — certified <b>rizz</b>, unmatched <b>vibes</b>, and giving main-character energy 24/7. Let's gooo! 🎉</p>
   <div class="cta-row">
     <button class="btn btn-primary" onclick="document.getElementById('countdown').scrollIntoView()">See the Countdown ⏳</button>
@@ -414,7 +414,7 @@
       <div class="box"><span class="num" id="mins">00</span><span class="lab">Mins</span></div>
       <div class="box"><span class="num" id="secs">00</span><span class="lab">Secs</span></div>
     </div>
-    <p class="countdown-msg" id="countdownMsg">until it's officially Alina's day fr fr 💜</p>
+    <p class="countdown-msg" id="countdownMsg">until it's officially Alena's day fr fr 💜</p>
   </div>
 </section>
 
@@ -441,7 +441,7 @@
       </div>
     </div>
     <button class="btn btn-primary" id="lightBtn" onclick="lightCake()">🕯️ Light the Candles</button>
-    <p class="cake-caption">Make a wish, Alina! Whatever it is, may it come true — no cap. 🌟</p>
+    <p class="cake-caption">Make a wish, Alena! Whatever it is, may it come true — no cap. 🌟</p>
   </div>
 </section>
 
@@ -468,7 +468,7 @@
 <section class="cake-section" id="about">
   <div class="sec-head">
     <span class="tag"><svg class="bow-icon bow-tag"><use href="#bowShape"/></svg>Certified Facts<svg class="bow-icon bow-tag"><use href="#bowShape"/></svg></span>
-    <h2>All About Alina</h2>
+    <h2>All About Alena</h2>
     <p>The official lineup of things she's obsessed with rn</p>
   </div>
   <div class="facts-grid">
@@ -486,7 +486,7 @@
 <section id="gallery">
   <div class="sec-head">
     <span class="tag">Core Memories</span>
-    <h2>Alina's Glow-Up Gallery</h2>
+    <h2>Alena's Glow-Up Gallery</h2>
     <p>From tiny bow to big bow — the whole journey 💜📸</p>
   </div>
   <div class="gallery-grid" id="galleryGrid"></div>
@@ -496,11 +496,11 @@
   <div class="sec-head">
     <span class="tag">Leave Some Love</span>
     <h2>Birthday Wishes Wall</h2>
-    <p>Drop a message for Alina — bestie deserves all the hype 💜</p>
+    <p>Drop a message for Alena — bestie deserves all the hype 💜</p>
   </div>
   <div class="wish-form">
     <input type="text" id="wishName" placeholder="Your name">
-    <textarea id="wishMsg" placeholder="Write your birthday wish for Alina..."></textarea>
+    <textarea id="wishMsg" placeholder="Write your birthday wish for Alena..."></textarea>
     <button class="btn btn-primary" onclick="addWish()">Send Wish 💌</button>
   </div>
   <div class="wishes-wall" id="wishesWall"></div>
@@ -510,10 +510,10 @@
 
 <footer>
   <svg class="bow-icon bow-footer"><use href="#bowShape"/></svg>
-  <h3>Happy 12th Birthday, Alina! 🎀💜</h3>
+  <h3>Happy 12th Birthday, Alena! 🎀💜</h3>
   <p>Wishing you a day as amazing and iconic as you are.</p>
   <div class="hashtags">
-    <span>#Alina12thGlowUp</span><span>#MainCharacterEnergy</span><span>#BowCoreBirthday</span>
+    <span>#Alena12thGlowUp</span><span>#MainCharacterEnergy</span><span>#BowCoreBirthday</span>
   </div>
 </footer>
 
@@ -551,7 +551,7 @@ function updateCountdown(){
   const msg = document.getElementById('countdownMsg');
   if(diff <= 0){
     document.getElementById('timerBoxes').style.display='none';
-    msg.textContent = "IT'S HER BIRTHDAY TODAY! 🎉🎀 Go say happy birthday to Alina!!";
+    msg.textContent = "IT'S HER BIRTHDAY TODAY! 🎉🎀 Go say happy birthday to Alena!!";
     return;
   }
   const d = Math.floor(diff/(1000*60*60*24));
@@ -676,7 +676,7 @@ imageFiles.forEach((file,idx)=>{
   const wrap = document.createElement('div');
   wrap.className = 'polaroid';
   wrap.onclick = ()=>openLightbox(idx);
-  wrap.innerHTML = '<div class="tape"></div><svg class="bow-icon bow-corner"><use href="#bowShape"/></svg><img loading="lazy" src="imgs/'+file+'" alt="Alina memory '+(idx+1)+'">';
+  wrap.innerHTML = '<div class="tape"></div><svg class="bow-icon bow-corner"><use href="#bowShape"/></svg><img loading="lazy" src="imgs/'+file+'" alt="Alena memory '+(idx+1)+'">';
   galleryGrid.appendChild(wrap);
 });
 
@@ -706,13 +706,13 @@ document.addEventListener('keydown',(e)=>{
 
 /* ---------------- wishes wall ---------------- */
 const defaultWishes = [
-  {who:"Mom & Dad", msg:"Happy 12th birthday to our precious Alina! You light up every room, bestie. We love you endlessly. 💜🎀"},
-  {who:"Team Cowork", msg:"Wishing Alina the most iconic, main-character birthday ever! Stay slaying, queen. ✨"},
+  {who:"Mom & Dad", msg:"Happy 12th birthday to our precious Alena! You light up every room, bestie. We love you endlessly. 💜🎀"},
+  {who:"Team Cowork", msg:"Wishing Alena the most iconic, main-character birthday ever! Stay slaying, queen. ✨"},
   {who:"Bestie", msg:"12 looks SO good on you no cap! Can't wait to celebrate with you 🎉"}
 ];
 const wishesWall = document.getElementById('wishesWall');
 function loadWishes(){
-  const saved = JSON.parse(localStorage.getItem('alinaWishes')||'null') || defaultWishes;
+  const saved = JSON.parse(localStorage.getItem('alenaWishes')||'null') || defaultWishes;
   wishesWall.innerHTML = '';
   saved.forEach(w=>{
     const card = document.createElement('div');
@@ -730,9 +730,9 @@ function addWish(){
   const name = document.getElementById('wishName').value.trim() || 'Anonymous Bestie';
   const msg = document.getElementById('wishMsg').value.trim();
   if(!msg) return;
-  const saved = JSON.parse(localStorage.getItem('alinaWishes')||'null') || defaultWishes.slice();
+  const saved = JSON.parse(localStorage.getItem('alenaWishes')||'null') || defaultWishes.slice();
   saved.unshift({who:name,msg:msg});
-  localStorage.setItem('alinaWishes', JSON.stringify(saved));
+  localStorage.setItem('alenaWishes', JSON.stringify(saved));
   document.getElementById('wishName').value='';
   document.getElementById('wishMsg').value='';
   loadWishes();
